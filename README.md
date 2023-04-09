@@ -1,60 +1,48 @@
 
-# Blockchain.go
+Blockchain.go
+Dieses Projekt implementiert eine einfache Blockchain in Golang, die Eingabedaten unveränderbar speichert.
 
- Die Eingegebenen Daten sollen unveränderbar abgespeichert werden. Hierfür eignet sich eine eigene Blockchain. Der Kunde erwartet die Implementierung in der Programmiersprache Golang.
+Dokumentation
+Die Dokumentation ist hier verfügbar.
 
-## Documentation
+Installation
+Klonen Sie das Repository mit git clone https://github.com/NikolajMalisch/blockchain.go.git
+Wechseln Sie in das Verzeichnis cd blockchain.go
+Führen Sie go run blockchain.go aus, um die Anwendung zu starten.
+Verwendung
+Block
+Ein Block ist ein benutzerdefinierter Typ, der die Daten unserer Blockchain speichert. Ein Block enthält folgende Felder:
 
-[Documentation](https://github.com/NikolajMalisch/blockchain.go.git)
+PrevHash: der Hash-Wert des vorherigen Blocks in der Blockchain
+Data: die Daten, die im Block gespeichert werden sollen
+Timestamp: ein Zeitstempel, der angibt, wann der Block erstellt wurde
+Nonce: ein Wert, der für den Proof-of-Work-Algorithmus verwendet wird, um einen gültigen Hash-Wert zu finden
+Hash: der Hash-Wert des aktuellen Blocks
+Blockchain
+Eine Blockchain ist ein benutzerdefinierter Typ, der eine Sammlung von Blöcken enthält. Eine Blockchain enthält folgende Felder:
 
-## Installation
+Blocks: eine Liste von Blöcken, die die Blockchain bilden
+Die Blockchain unterstützt folgende Methoden:
 
-git clone https://github.com/NikolajMalisch/blockchain.go.git 
+AddBlock(from, to string, amount float64): fügt einen neuen Block zur Blockchain hinzu, der Transaktionsdetails enthält
+IsValid() bool: prüft, ob die Blockchain manipuliert wurde, indem sie den Hash-Wert jedes Blocks neu berechnet und überprüft, ob der vorherige Hash-Wert eines anderen Blocks gleich dem Hash-Wert des vorherigen Blocks ist.
+Beispiel
+Ein Beispiel für die Verwendung der Blockchain ist in der main-Funktion enthalten:
 
-cd blockchain.go
-
-import ()
-
-    // Block einen benutzerdefinierten Blocktyp, um die Daten unserer Blockchain zu speichern
-type Block struct {
-
-    // Blockchain einen benutzerdefinierten Typ, der unsere Blöcke enthält
-type Blockchain struct {
-
-    // CalculateHash Block-Hash für unsere Blockchain ableiten, indem wir den vorherigen Block-Hash,
-    //die aktuellen Blockdaten, den Zeitstempel und den PoW mit demSHA256-Algorithmushashen
-func (b Block) CalculateHash() string {
-
-    // Mine Erstellen wir eine Methode für unseren Typ, die den PoW-Wert erhöht und
-    //den Block hash berechnet, bis wir einen gültigen Hash erhalten
-func (b *Block) Mine(difficulty int) {
-
-    // CreateBlockchain Funktion, die einen Genesis-Block für unsere Blockchain erstellt und eine neue Instanz des Typs zurückgibt
-func CreateBlockchain(difficulty int) Blockchain {
-
-    //Hash-Wert unseres Genesis-Blocks auf einen Wert setzen. Da dies der erste Block in der Blockchain ist,
-    //gibt es keinen Wert für den vorherigen Hash und die Dateneigenschaft ist leer. 0
-return Blockchain{
-
-    // AddBlock eineMethode für einen Typ erstellt haben, die Folgendes tut
-    //erfasst Transaktionsdetails (Absender, Empfänger und Überweisungsbetrag)
-    //erzeugt einen neuen Block mit Transaktionsdetails
-    //erstellt einen neuen Block unter Verwendung des Hash werts des vorherigen Blocks,
-    //der aktuellen Blockdaten und des generierten PoW fügt den neu erstellten Block zur Blockchain hinzu
-func (b *Blockchain) AddBlock(from, to string, amount float64) {
-    // IsValid berechnet den Hash-Wert jedes Blocks neu, vergleicht ihn mit den gespeicherten Hash-Werten der anderen Blöcke
-    //und prüft, ob der vorherige Hash-Wert eines anderen Blocks gleich dem Hash-Wert des vorherigen Blocks ist.
-    //Wenn eine der beiden Prüfungen fehlschlägt, wurde die Blockchain manipuliert.
-func (b Blockchain) IsValid() bool {
-
+go
+Copy code
 func main() {
-kchain := CreateBlockchain(2)
+    kchain := CreateBlockchain(2)
 
-// record transactions on the blockchain for Alice, Bob, and John
-blockchain.AddBlock("Alice", "Bob", 5)
-blockchain.AddBlock("John", "Bob", 2)
+    // Transaktionen auf der Blockchain für Alice, Bob und John aufzeichnen
+    blockchain.AddBlock("Alice", "Bob", 5)
+    blockchain.AddBlock("John", "Bob", 2)
 
-// check if the blockchain is valid; expecting true
-fmt.Println(blockchain.IsValid())
+    // Überprüfen, ob die Blockchain gültig ist; erwartet wird true
+    fmt.Println(blockchain.IsValid())
+}
+Contributing
+Wenn Sie einen Fehler gefunden haben oder einen Vorschlag zur Verbesserung des Codes oder der Dokumentation haben, können Sie gerne einen Pull-Request erstellen oder ein Issue eröffnen.
 
-go run blockchain.go
+Lizenz
+Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der LICENSE-Datei.
